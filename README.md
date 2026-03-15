@@ -1,32 +1,17 @@
-# X (Twitter) Plugin
+# @phantasy/plugin-x
 
-Phantasy plugin for X (Twitter) integration.
+Installable X/Twitter plugin surface for Phantasy.
 
-## Installation
+## Install
 
 ```bash
 npm install @phantasy/plugin-x
 ```
 
-## Usage
+## Use
 
-```typescript
+```ts
 import { XPlugin } from "@phantasy/plugin-x";
-
-const plugin = new XPlugin({
-  apiKey: process.env.X_API_KEY,
-  apiSecret: process.env.X_API_SECRET,
-  accessToken: process.env.X_ACCESS_TOKEN,
-  accessSecret: process.env.X_ACCESS_SECRET,
-});
 ```
 
-## Tools
-
-- `post_tweet` - Post a tweet
-- `reply_to_tweet` - Reply to a tweet
-- `search_tweets` - Search for tweets
-
-## License
-
-BUSL-1.1
+This package wraps the stable `@phantasy/agent/plugin-x` subpath so the X integration can ship as a first-class plugin package.
