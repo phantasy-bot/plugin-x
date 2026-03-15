@@ -1,17 +1,24 @@
-# @phantasy/plugin-x
+# X (Twitter)
 
-Installable X/Twitter plugin surface for Phantasy.
+Installable X/Twitter plugin surface for Phantasy
 
-## Install
+Package: `@phantasy/plugin-x`
+Repo: https://github.com/phantasy-bot/plugin-x
+Phase: `source-extracted`
+
+## Status
+
+This repo is now seeded with real plugin source extracted from the Phantasy monorepo. It is no longer just a blank scaffold, but it may still need seam cleanup before it can become the sole implementation path.
+
+## Development
 
 ```bash
-npm install @phantasy/plugin-x
+npm install
+npm run typecheck
+npm run build
 ```
 
-## Use
+## Extraction Goal
 
-```ts
-import { XPlugin } from "@phantasy/plugin-x";
-```
+Continue removing deep monorepo-only dependencies so releases can happen directly from this repo.
 
-This package wraps the stable `@phantasy/agent/plugin-x` subpath so the X integration can ship as a first-class plugin package.

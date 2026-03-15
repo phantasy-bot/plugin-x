@@ -1,14 +1,14 @@
 # @phantasy/plugin-x
 
 - Repo URL: https://github.com/phantasy-bot/plugin-x
-- Extraction phase: `published-wrapper`
-- Source of truth: `monorepo-wrapper`
-- Sync mode: `dist-package`
+- Extraction phase: `source-extracted`
+- Source of truth: `standalone-repo`
+- Sync mode: `source-extract`
 
 ## Meaning
 
-This repo currently mirrors the published wrapper package surface generated from the main Phantasy monorepo.
+This repo now receives a true source extraction payload from the main Phantasy monorepo. It should continue severing deep internal dependencies until the standalone repo becomes fully independent.
 
 ## Next Step
 
-Move from wrapper-package sync to true source extraction after the plugin's dependency seam is cleaned up.
+Continue replacing remaining monorepo-coupled imports with stable public package contracts, then publish from this repo directly.

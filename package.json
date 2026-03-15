@@ -1,15 +1,17 @@
 {
   "name": "@phantasy/plugin-x",
   "version": "2.0.0",
+  "private": false,
   "description": "Installable X/Twitter plugin surface for Phantasy",
   "license": "MIT",
+  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
     }
   },
   "files": [
@@ -17,29 +19,42 @@
     "admin-ui-dist",
     "README.md",
     "LICENSE",
-    "SECURITY.md"
+    "SECURITY.md",
+    "phantasy.plugin.json"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "sideEffects": false,
   "keywords": [
-    "ai",
-    "agent",
-    "plugin",
     "twitter",
-    "x"
+    "x",
+    "social-media",
+    "posting"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phantasy-bot/agent.git"
+    "url": "https://github.com/phantasy-bot/plugin-x"
   },
-  "bugs": {
-    "url": "https://github.com/phantasy-bot/agent/issues"
+  "publishConfig": {
+    "access": "public"
   },
-  "homepage": "https://github.com/phantasy-bot/agent#readme",
-  "dependencies": {
+  "homepage": "https://github.com/phantasy-bot/plugin-x",
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
     "@phantasy/agent": "^2.0.0"
+  },
+  "dependencies": {
+    "twitter-api-v2": "1.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.9.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
   },
   "phantasy": {
     "displayName": "X (Twitter)",

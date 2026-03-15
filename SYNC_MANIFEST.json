@@ -17,10 +17,174 @@
   ],
   "visibility": "public",
   "repoUrl": "https://github.com/phantasy-bot/plugin-x",
-  "sourceOfTruth": "monorepo-wrapper",
-  "syncMode": "dist-package",
-  "phase": "published-wrapper",
+  "sourceOfTruth": "standalone-repo",
+  "syncMode": "source-extract",
+  "phase": "source-extracted",
   "repoExists": true,
   "npmPublished": true,
-  "exportedAt": "2026-03-15T15:23:37.127Z"
+  "adminAssetDir": "src/plugins/x/admin-ui-dist",
+  "phantasy": {
+    "displayName": "X (Twitter)",
+    "icon": "𝕏",
+    "category": "social",
+    "tags": [
+      "twitter",
+      "x",
+      "social-media",
+      "posting"
+    ],
+    "workspace": "business",
+    "extensionKind": "integration",
+    "permissions": [
+      "internet"
+    ],
+    "platforms": [
+      "node"
+    ],
+    "productionReady": true,
+    "adminSurface": {
+      "tabId": "x",
+      "label": "X",
+      "section": "business",
+      "workspace": "business",
+      "kind": "native",
+      "entry": "/admin-ui/index.js",
+      "assetRoot": "admin-ui-dist",
+      "keywords": [
+        "twitter",
+        "x",
+        "social",
+        "posting"
+      ],
+      "aliases": [
+        "twitter",
+        "x"
+      ],
+      "dashboardIcon": "chatRoundLike"
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "autonomousPosting": {
+          "type": "boolean",
+          "default": false
+        },
+        "postingIntervalMinutes": {
+          "type": "number",
+          "default": 60
+        },
+        "maxPostsPerDay": {
+          "type": "number",
+          "default": 8
+        },
+        "activeHours": {
+          "type": "string",
+          "default": "9-21"
+        },
+        "requireApproval": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  },
+  "sourceExtract": {
+    "packageDependencies": {
+      "twitter-api-v2": "1.25.0"
+    },
+    "devDependencies": {
+      "react": "18.3.1",
+      "react-dom": "18.3.1",
+      "@types/react": "^18.2.0",
+      "@types/react-dom": "^18.2.0"
+    },
+    "tsconfigCompilerOptions": {
+      "jsx": "react-jsx"
+    },
+    "files": [
+      {
+        "sourcePath": "src/plugins/x/index.ts",
+        "targetPath": "src/index.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/x-plugin.ts",
+        "targetPath": "src/x-plugin.ts",
+        "replacements": [
+          {
+            "from": "import { logger } from \"@/logger\";",
+            "to": "import { createPluginModuleLogger } from \"@phantasy/agent/plugin-runtime\";"
+          },
+          {
+            "from": "const log = logger.module(\"XPlugin\");",
+            "to": "const log = createPluginModuleLogger(\"XPlugin\");"
+          },
+          {
+            "from": "import { xService } from \"@/services/external/x-service\";",
+            "to": "import { xService } from \"./x-service\";"
+          }
+        ]
+      },
+      {
+        "sourcePath": "src/services/external/x-service.ts",
+        "targetPath": "src/x-service.ts",
+        "replacements": [
+          {
+            "from": "import { logger } from \"@/logger\";",
+            "to": "import {\n  createPluginModuleLogger,\n  fetchWithTimeout,\n  PlatformConfigService,\n  createRuntimeId,\n} from \"@phantasy/agent/plugin-runtime\";\nconst logger = createPluginModuleLogger(\"XService\");"
+          },
+          {
+            "from": "import { fetchWithTimeout } from \"@/utils/fetch-utils\";\n",
+            "to": ""
+          },
+          {
+            "from": "import { PlatformConfigService } from '@/services/utilities/platform-config-service';\n",
+            "to": ""
+          },
+          {
+            "from": "import { createRuntimeId } from \"@/utils/runtime-id\";\n",
+            "to": ""
+          },
+          {
+            "from": "@/storage/kv/service",
+            "to": "@phantasy/agent/plugin-runtime"
+          }
+        ]
+      },
+      {
+        "sourcePath": "src/plugins/x/admin-ui/index.tsx",
+        "targetPath": "src/admin-ui/index.tsx"
+      },
+      {
+        "sourcePath": "src/plugins/x/admin-ui/x-admin-app.tsx",
+        "targetPath": "src/admin-ui/x-admin-app.tsx"
+      },
+      {
+        "sourcePath": "src/plugins/x/admin-ui/x-admin-types.ts",
+        "targetPath": "src/admin-ui/x-admin-types.ts"
+      }
+    ],
+    "replacements": [
+      {
+        "from": "import {\n  BasePlugin,\n  type PluginConfig,\n  type PlatformCapability,\n  type PluginTool,\n} from \"@/plugins/base-plugin\";",
+        "to": "import {\n  BasePlugin,\n  type PluginConfig,\n  type PlatformCapability,\n  type PluginTool,\n} from \"@phantasy/agent/plugins\";"
+      },
+      {
+        "from": "import type { AgentConfig } from \"@/types\";",
+        "to": "import type { AgentConfig } from \"@phantasy/agent/types\";"
+      },
+      {
+        "from": "import type { PluginAdminNativeMountContext } from \"../../admin-ui/plugin-admin-surface-contract\";",
+        "to": "import type { PluginAdminNativeMountContext } from \"@phantasy/agent/plugin-admin-ui\";"
+      },
+      {
+        "from": "import {\n  registerPluginAdminSurface,\n  type PluginAdminNativeMountContext,\n} from \"../../admin-ui/plugin-admin-surface-contract\";",
+        "to": "import {\n  registerPluginAdminSurface,\n  type PluginAdminNativeMountContext,\n} from \"@phantasy/agent/plugin-admin-ui\";"
+      }
+    ]
+  },
+  "exportedAt": "2026-03-15T18:49:01.515Z"
 }

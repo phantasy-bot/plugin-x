@@ -1,0 +1,28 @@
+{
+  "name": "@phantasy/plugin-x",
+  "version": "2.0.0",
+  "description": "Installable X/Twitter plugin surface for Phantasy",
+  "displayName": "X (Twitter)",
+  "workspace": "business",
+  "extensionKind": "integration",
+  "adminSurface": {
+    "tabId": "x",
+    "label": "X",
+    "section": "business",
+    "workspace": "business",
+    "kind": "native",
+    "entry": "/admin-ui/index.js",
+    "assetRoot": "admin-ui-dist",
+    "keywords": [
+      "twitter",
+      "x",
+      "social",
+      "posting"
+    ],
+    "aliases": [
+      "twitter",
+      "x"
+    ],
+    "dashboardIcon": "chatRoundLike"
+  }
+}
