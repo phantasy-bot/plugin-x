@@ -1,10 +1,26 @@
 {
   "slug": "plugin-x",
   "packageName": "@phantasy/plugin-x",
+  "displayName": "X (Twitter)",
+  "description": "Installable X/Twitter plugin surface for Phantasy",
+  "workspace": "business",
+  "extensionKind": "integration",
+  "category": "social",
+  "tags": [
+    "twitter",
+    "x",
+    "social-media",
+    "posting"
+  ],
+  "permissions": [
+    "internet"
+  ],
+  "visibility": "public",
   "repoUrl": "https://github.com/phantasy-bot/plugin-x",
   "sourceOfTruth": "monorepo-wrapper",
   "syncMode": "dist-package",
   "phase": "published-wrapper",
   "repoExists": true,
-  "exportedAt": "2026-03-15T15:05:34.473Z"
+  "npmPublished": true,
+  "exportedAt": "2026-03-15T15:23:37.127Z"
 }
