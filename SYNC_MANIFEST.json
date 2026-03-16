@@ -123,13 +123,13 @@
             "to": "const log = createPluginModuleLogger(\"XPlugin\");"
           },
           {
-            "from": "import { xService } from \"@/services/external/x-service\";",
+            "from": "import { xService } from \"@/plugins/x/x-service\";",
             "to": "import { xService } from \"./x-service\";"
           }
         ]
       },
       {
-        "sourcePath": "src/services/external/x-service.ts",
+        "sourcePath": "src/plugins/x/x-service.ts",
         "targetPath": "src/x-service.ts",
         "replacements": [
           {
@@ -149,10 +149,22 @@
             "to": ""
           },
           {
+            "from": "\"@/plugin-runtime\"",
+            "to": "\"@phantasy/agent/plugin-runtime\""
+          },
+          {
             "from": "@/storage/kv/service",
             "to": "@phantasy/agent/plugin-runtime"
           }
         ]
+      },
+      {
+        "sourcePath": "src/plugins/x/twitter-integration.ts",
+        "targetPath": "src/twitter-integration.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/twitter-config.ts",
+        "targetPath": "src/twitter-config.ts"
       },
       {
         "sourcePath": "src/plugins/x/admin-ui/index.tsx",
@@ -165,6 +177,58 @@
       {
         "sourcePath": "src/plugins/x/admin-ui/x-admin-types.ts",
         "targetPath": "src/admin-ui/x-admin-types.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/party-hq-protocol.ts",
+        "targetPath": "src/party-hq-protocol.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/party-hq-sync-service.ts",
+        "targetPath": "src/party-hq-sync-service.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/party-hq-routes.ts",
+        "targetPath": "src/party-hq-routes.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/twitter-routes.ts",
+        "targetPath": "src/twitter-routes.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/notification-approvals.ts",
+        "targetPath": "src/notification-approvals.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter-bot-service.ts",
+        "targetPath": "src/runtime/twitter-bot-service.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/api-client.ts",
+        "targetPath": "src/runtime/twitter/api-client.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/content-generator.ts",
+        "targetPath": "src/runtime/twitter/content-generator.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/index.ts",
+        "targetPath": "src/runtime/twitter/index.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/polling-manager.ts",
+        "targetPath": "src/runtime/twitter/polling-manager.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/stream-manager.ts",
+        "targetPath": "src/runtime/twitter/stream-manager.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/twitter-command-handler.ts",
+        "targetPath": "src/runtime/twitter/twitter-command-handler.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/types.ts",
+        "targetPath": "src/runtime/twitter/types.ts"
       }
     ],
     "replacements": [
@@ -177,6 +241,26 @@
         "to": "import type { AgentConfig } from \"@phantasy/agent/types\";"
       },
       {
+        "from": "import type { BasePlugin, PlatformCapability } from \"@/plugins/base-plugin\";",
+        "to": "import type { BasePlugin, PlatformCapability } from \"@phantasy/agent/plugins\";"
+      },
+      {
+        "from": "\"@/plugin-runtime\"",
+        "to": "\"@phantasy/agent/plugin-runtime\""
+      },
+      {
+        "from": "\"@/plugins/x/party-hq-protocol\"",
+        "to": "\"./party-hq-protocol\""
+      },
+      {
+        "from": "import { XService } from \"@/plugins/x/x-service\";",
+        "to": "import { XService } from \"./x-service\";"
+      },
+      {
+        "from": "import { PartyHQSyncService } from \"@/plugins/x/party-hq-sync-service\";",
+        "to": "import { PartyHQSyncService } from \"./party-hq-sync-service\";"
+      },
+      {
         "from": "import type { PluginAdminNativeMountContext } from \"../../admin-ui/plugin-admin-surface-contract\";",
         "to": "import type { PluginAdminNativeMountContext } from \"@phantasy/agent/plugin-admin-ui\";"
       },
@@ -186,5 +270,5 @@
       }
     ]
   },
-  "exportedAt": "2026-03-15T18:49:01.515Z"
+  "exportedAt": "2026-03-16T02:20:40.153Z"
 }

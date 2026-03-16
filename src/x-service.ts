@@ -1,10 +1,11 @@
 import { TwitterApi } from "twitter-api-v2";
 import {
   createPluginModuleLogger,
+  createRuntimeId,
   fetchWithTimeout,
   PlatformConfigService,
-  createRuntimeId,
 } from "@phantasy/agent/plugin-runtime";
+
 const logger = createPluginModuleLogger("XService");
 
 /** Shape of Twitter API errors with status code properties */
