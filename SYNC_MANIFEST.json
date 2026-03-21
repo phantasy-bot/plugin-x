@@ -1,0 +1,274 @@
+{
+  "slug": "plugin-x",
+  "packageName": "@phantasy/plugin-x",
+  "displayName": "X (Twitter)",
+  "description": "Installable X/Twitter plugin surface for Phantasy",
+  "workspace": "business",
+  "extensionKind": "integration",
+  "category": "social",
+  "tags": [
+    "twitter",
+    "x",
+    "social-media",
+    "posting"
+  ],
+  "permissions": [
+    "internet"
+  ],
+  "visibility": "public",
+  "repoUrl": "https://github.com/phantasy-bot/plugin-x",
+  "sourceOfTruth": "standalone-repo",
+  "syncMode": "source-extract",
+  "phase": "source-extracted",
+  "repoExists": true,
+  "npmPublished": true,
+  "adminAssetDir": "src/plugins/x/admin-ui-dist",
+  "phantasy": {
+    "displayName": "X (Twitter)",
+    "icon": "𝕏",
+    "category": "social",
+    "tags": [
+      "twitter",
+      "x",
+      "social-media",
+      "posting"
+    ],
+    "workspace": "business",
+    "extensionKind": "integration",
+    "permissions": [
+      "internet"
+    ],
+    "platforms": [
+      "node"
+    ],
+    "productionReady": true,
+    "adminSurface": {
+      "tabId": "x",
+      "label": "X",
+      "section": "business",
+      "workspace": "business",
+      "kind": "native",
+      "entry": "/admin-ui/index.js",
+      "assetRoot": "admin-ui-dist",
+      "keywords": [
+        "twitter",
+        "x",
+        "social",
+        "posting"
+      ],
+      "aliases": [
+        "twitter",
+        "x"
+      ],
+      "dashboardIcon": "twitter"
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "autonomousPosting": {
+          "type": "boolean",
+          "default": false
+        },
+        "postingIntervalMinutes": {
+          "type": "number",
+          "default": 60
+        },
+        "maxPostsPerDay": {
+          "type": "number",
+          "default": 8
+        },
+        "activeHours": {
+          "type": "string",
+          "default": "9-21"
+        },
+        "requireApproval": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  },
+  "sourceExtract": {
+    "packageDependencies": {
+      "twitter-api-v2": "1.25.0"
+    },
+    "devDependencies": {
+      "react": "18.3.1",
+      "react-dom": "18.3.1",
+      "@types/react": "^18.2.0",
+      "@types/react-dom": "^18.2.0"
+    },
+    "tsconfigCompilerOptions": {
+      "jsx": "react-jsx"
+    },
+    "files": [
+      {
+        "sourcePath": "src/plugins/x/index.ts",
+        "targetPath": "src/index.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/x-plugin.ts",
+        "targetPath": "src/x-plugin.ts",
+        "replacements": [
+          {
+            "from": "import { logger } from \"@/logger\";",
+            "to": "import { createPluginModuleLogger } from \"@phantasy/agent/plugin-runtime\";"
+          },
+          {
+            "from": "const log = logger.module(\"XPlugin\");",
+            "to": "const log = createPluginModuleLogger(\"XPlugin\");"
+          },
+          {
+            "from": "import { xService } from \"@/plugins/x/x-service\";",
+            "to": "import { xService } from \"./x-service\";"
+          }
+        ]
+      },
+      {
+        "sourcePath": "src/plugins/x/x-service.ts",
+        "targetPath": "src/x-service.ts",
+        "replacements": [
+          {
+            "from": "import { logger } from \"@/logger\";",
+            "to": "import {\n  createPluginModuleLogger,\n  fetchWithTimeout,\n  PlatformConfigService,\n  createRuntimeId,\n} from \"@phantasy/agent/plugin-runtime\";\nconst logger = createPluginModuleLogger(\"XService\");"
+          },
+          {
+            "from": "import { fetchWithTimeout } from \"@/utils/fetch-utils\";\n",
+            "to": ""
+          },
+          {
+            "from": "import { PlatformConfigService } from '@/services/utilities/platform-config-service';\n",
+            "to": ""
+          },
+          {
+            "from": "import { createRuntimeId } from \"@/utils/runtime-id\";\n",
+            "to": ""
+          },
+          {
+            "from": "\"@/plugin-runtime\"",
+            "to": "\"@phantasy/agent/plugin-runtime\""
+          },
+          {
+            "from": "@/storage/kv/service",
+            "to": "@phantasy/agent/plugin-runtime"
+          }
+        ]
+      },
+      {
+        "sourcePath": "src/plugins/x/twitter-integration.ts",
+        "targetPath": "src/twitter-integration.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/twitter-config.ts",
+        "targetPath": "src/twitter-config.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/admin-ui/index.tsx",
+        "targetPath": "src/admin-ui/index.tsx"
+      },
+      {
+        "sourcePath": "src/plugins/x/admin-ui/x-admin-app.tsx",
+        "targetPath": "src/admin-ui/x-admin-app.tsx"
+      },
+      {
+        "sourcePath": "src/plugins/x/admin-ui/x-admin-types.ts",
+        "targetPath": "src/admin-ui/x-admin-types.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/party-quest-protocol.ts",
+        "targetPath": "src/party-quest-protocol.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/party-quest-sync-service.ts",
+        "targetPath": "src/party-quest-sync-service.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/party-quest-routes.ts",
+        "targetPath": "src/party-quest-routes.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/twitter-routes.ts",
+        "targetPath": "src/twitter-routes.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/notification-approvals.ts",
+        "targetPath": "src/notification-approvals.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter-bot-service.ts",
+        "targetPath": "src/runtime/twitter-bot-service.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/api-client.ts",
+        "targetPath": "src/runtime/twitter/api-client.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/content-generator.ts",
+        "targetPath": "src/runtime/twitter/content-generator.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/index.ts",
+        "targetPath": "src/runtime/twitter/index.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/polling-manager.ts",
+        "targetPath": "src/runtime/twitter/polling-manager.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/stream-manager.ts",
+        "targetPath": "src/runtime/twitter/stream-manager.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/twitter-command-handler.ts",
+        "targetPath": "src/runtime/twitter/twitter-command-handler.ts"
+      },
+      {
+        "sourcePath": "src/plugins/x/runtime/twitter/types.ts",
+        "targetPath": "src/runtime/twitter/types.ts"
+      }
+    ],
+    "replacements": [
+      {
+        "from": "import {\n  BasePlugin,\n  type PluginConfig,\n  type PlatformCapability,\n  type PluginTool,\n} from \"@/plugins/base-plugin\";",
+        "to": "import {\n  BasePlugin,\n  type PluginConfig,\n  type PlatformCapability,\n  type PluginTool,\n} from \"@phantasy/agent/plugins\";"
+      },
+      {
+        "from": "import type { AgentConfig } from \"@/types\";",
+        "to": "import type { AgentConfig } from \"@phantasy/agent/types\";"
+      },
+      {
+        "from": "import type { BasePlugin, PlatformCapability } from \"@/plugins/base-plugin\";",
+        "to": "import type { BasePlugin, PlatformCapability } from \"@phantasy/agent/plugins\";"
+      },
+      {
+        "from": "\"@/plugin-runtime\"",
+        "to": "\"@phantasy/agent/plugin-runtime\""
+      },
+      {
+        "from": "\"@/plugins/x/party-quest-protocol\"",
+        "to": "\"./party-quest-protocol\""
+      },
+      {
+        "from": "import { XService } from \"@/plugins/x/x-service\";",
+        "to": "import { XService } from \"./x-service\";"
+      },
+      {
+        "from": "import { PartyQuestSyncService } from \"@/plugins/x/party-quest-sync-service\";",
+        "to": "import { PartyQuestSyncService } from \"./party-quest-sync-service\";"
+      },
+      {
+        "from": "import type { PluginAdminNativeMountContext } from \"../../admin-ui/plugin-admin-surface-contract\";",
+        "to": "import type { PluginAdminNativeMountContext } from \"@phantasy/agent/plugin-admin-ui\";"
+      },
+      {
+        "from": "import {\n  registerPluginAdminSurface,\n  type PluginAdminNativeMountContext,\n} from \"../../admin-ui/plugin-admin-surface-contract\";",
+        "to": "import {\n  registerPluginAdminSurface,\n  type PluginAdminNativeMountContext,\n} from \"@phantasy/agent/plugin-admin-ui\";"
+      }
+    ]
+  },
+  "exportedAt": "2026-03-21T22:09:30.495Z"
+}
