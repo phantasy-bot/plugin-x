@@ -1,43 +1,128 @@
 {
   "name": "@phantasy/plugin-x",
-  "version": "1.0.0",
-  "description": "X (Twitter) plugin for Phantasy - Post tweets, replies, quotes, search, and manage Twitter/X presence",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "2.0.0",
+  "private": false,
+  "description": "Installable X/Twitter plugin surface for Phantasy",
+  "license": "MIT",
   "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "test": "vitest run",
-    "lint": "eslint src/",
-    "prepublishOnly": "npm run build"
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
   },
+  "files": [
+    "dist",
+    "admin-ui-dist",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "phantasy.plugin.json"
+  ],
+  "sideEffects": false,
   "keywords": [
-    "phantasy",
-    "plugin",
     "twitter",
     "x",
-    "social-media"
+    "social-media",
+    "posting"
   ],
-  "author": "Phantasy",
-  "license": "BUSL-1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/phantasy-bot/plugin-x"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/phantasy-bot/plugin-x",
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
+  },
   "peerDependencies": {
-    "@phantasy/core": "^1.0.0",
-    "express": "^4.18.0",
-    "zod": "^3.22.0"
+    "@phantasy/agent": "^2.0.0"
+  },
+  "dependencies": {
+    "twitter-api-v2": "1.25.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.10.0",
-    "typescript": "^5.3.0",
-    "vitest": "^1.0.0"
+    "@types/node": "^24.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.9.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
   },
   "phantasy": {
+    "displayName": "X (Twitter)",
+    "icon": "𝕏",
     "category": "social",
-    "tier": "optional",
-    "capabilities": ["post", "reply", "search", "stream"]
+    "tags": [
+      "twitter",
+      "x",
+      "social-media",
+      "posting"
+    ],
+    "workspace": "business",
+    "extensionKind": "integration",
+    "permissions": [
+      "internet"
+    ],
+    "platforms": [
+      "node"
+    ],
+    "productionReady": true,
+    "adminSurface": {
+      "tabId": "x",
+      "label": "X",
+      "section": "business",
+      "workspace": "business",
+      "kind": "native",
+      "entry": "/admin-ui/index.js",
+      "assetRoot": "admin-ui-dist",
+      "keywords": [
+        "twitter",
+        "x",
+        "social",
+        "posting"
+      ],
+      "aliases": [
+        "twitter",
+        "x"
+      ],
+      "dashboardIcon": "twitter"
+    },
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "autonomousPosting": {
+          "type": "boolean",
+          "default": false
+        },
+        "postingIntervalMinutes": {
+          "type": "number",
+          "default": 60
+        },
+        "maxPostsPerDay": {
+          "type": "number",
+          "default": 8
+        },
+        "activeHours": {
+          "type": "string",
+          "default": "9-21"
+        },
+        "requireApproval": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
   }
 }
