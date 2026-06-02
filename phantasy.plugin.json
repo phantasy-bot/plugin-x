@@ -1,0 +1,108 @@
+{
+  "name": "@phantasy/plugin-x",
+  "version": "0.1.0-beta",
+  "description": "Post tweets, replies, quotes, search, and manage Twitter/X presence.",
+  "displayName": "X (Twitter)",
+  "author": "Phantasy",
+  "homepage": "https://github.com/phantasy-bot/plugin-x",
+  "repository": "https://github.com/phantasy-bot/plugin-x",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "workspace": "business",
+  "extensionKind": "integration",
+  "category": "social",
+  "tags": [
+    "twitter",
+    "x",
+    "social-media",
+    "posting"
+  ],
+  "keywords": [
+    "twitter",
+    "x",
+    "social-media",
+    "posting"
+  ],
+  "permissions": [
+    "internet"
+  ],
+  "dependencies": [],
+  "platforms": [
+    "node"
+  ],
+  "productionReady": false,
+  "platformFeatures": {
+    "messaging": true,
+    "streaming": true,
+    "autonomous": true
+  },
+  "adminSurface": {
+    "tabId": "x",
+    "label": "X",
+    "workspace": "business",
+    "kind": "generic",
+    "keywords": [
+      "twitter",
+      "x",
+      "social",
+      "posting"
+    ],
+    "aliases": [
+      "twitter",
+      "x"
+    ],
+    "dashboardIcon": "twitter"
+  },
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "autonomousPosting": {
+        "type": "boolean",
+        "default": false
+      },
+      "postingIntervalMinutes": {
+        "type": "number",
+        "default": 60
+      },
+      "maxPostsPerDay": {
+        "type": "number",
+        "default": 8
+      },
+      "activeHours": {
+        "type": "string",
+        "default": "9-21"
+      },
+      "requireApproval": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  },
+  "phantasy": {
+    "extensions": [
+      {
+        "path": "./dist/index.js",
+        "kind": "tool"
+      }
+    ],
+    "pluginDependencies": [],
+    "security": {
+      "secrets": [
+        "TWITTER_API_KEY",
+        "TWITTER_API_SECRET",
+        "TWITTER_ACCESS_TOKEN"
+      ],
+      "neverLog": [
+        "apiKey",
+        "apiSecret",
+        "accessToken",
+        "accessSecret"
+      ],
+      "securityWarning": "Posting tools can publish externally. Keep approval policy enabled unless the agent is trusted to post autonomously."
+    }
+  }
+}

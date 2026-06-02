@@ -1,32 +1,23 @@
-# X (Twitter) Plugin
+# X (Twitter)
 
-Phantasy plugin for X (Twitter) integration.
+Post tweets, replies, quotes, search, and manage Twitter/X presence.
 
-## Installation
+Package: `@phantasy/plugin-x`
+Repo: https://github.com/phantasy-bot/plugin-x
+
+## Status
+
+This repository is the standalone source for the X (Twitter) plugin. It ships an installable Phantasy plugin package instead of keeping this optional capability in the core Phantasy runtime.
+
+## Development
 
 ```bash
-npm install @phantasy/plugin-x
+npm install
+npm run typecheck
+npm run build
+npm pack --dry-run
 ```
 
-## Usage
+## Runtime Contract
 
-```typescript
-import { XPlugin } from "@phantasy/plugin-x";
-
-const plugin = new XPlugin({
-  apiKey: process.env.X_API_KEY,
-  apiSecret: process.env.X_API_SECRET,
-  accessToken: process.env.X_ACCESS_TOKEN,
-  accessSecret: process.env.X_ACCESS_SECRET,
-});
-```
-
-## Tools
-
-- `post_tweet` - Post a tweet
-- `reply_to_tweet` - Reply to a tweet
-- `search_tweets` - Search for tweets
-
-## License
-
-BUSL-1.1
+The plugin uses the public `@phantasy/agent/plugins` and `@phantasy/agent/plugin-runtime` surfaces. Do not import private paths from the Phantasy monorepo.
